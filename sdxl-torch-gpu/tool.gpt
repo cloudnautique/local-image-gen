@@ -1,0 +1,28 @@
+description: create images based on prompts
+tools: render
+args: prompt: what would you like the AI model to create
+args: negative_prompt: what you would like the AI model to not include
+args: number_of_images: number of images to create in a single batch
+jsonResponse: true
+
+
+Summarize this prompt {prompt} text so that it captures the subject and style desired but stays under 80 characters.
+summarize the negative prompt {negative_prompt} so that it is under 80 characters while keeping the intent
+
+Then call the render tool with the prompt and negative prompts. If the number_of_images {number_of_images} wasn't set explicitly send a 1 otherwise
+pass the value with a ceiling of 4
+
+return json like:
+{
+    "image_name": "file:"
+}
+
+---
+name: render
+tools: sys.exec
+description: execute the model to generate images
+args: prompt: what would you like the AI model to create
+args: negative_prompt: what you would like the AI model to not include
+args: batch_size: number of images to pass in a single pass
+
+#!/usr/bin/env python ${GPTSCRIPT_TOOL_DIR}/sdxl.py

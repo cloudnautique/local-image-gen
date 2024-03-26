@@ -1,0 +1,6 @@
+torch==2.2.1
+invisible-watermark==0.2.0
+diffusers==0.27.0
+safetensors==0.4.2
+accelerate==0.28.0
+transformers==4.38.2
