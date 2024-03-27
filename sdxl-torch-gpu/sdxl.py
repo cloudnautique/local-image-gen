@@ -1,6 +1,7 @@
 import torch
 import os
 import sys
+import json
 
 from diffusers import (
     DiffusionPipeline,
@@ -51,7 +52,7 @@ elif torch.backends.mps.is_available():
     print("MPS is available. Using MPS...")
 # Exit if neither CUDA nor MPS is available
 else:
-    print(
+    sys.stderr.write(
         "CUDA or MPS is not available. Need one of these to use this tool.\nExiting..."
     )
     sys.exit(1)
@@ -98,6 +99,9 @@ image = refiner(
     generator=generator,
 ).images
 
-for i in range(0, len(image)):
+output = {}
+for i in range(len(image)):
     image[i].save(f"output-{i}.png")
-    print(f"file://{os.getcwd()}/output-{i}.png")
+    output[f"output-{i}.png"] = f"file://{os.getcwd()}/output-{i}.png"
+
+print(json.dumps(output))
