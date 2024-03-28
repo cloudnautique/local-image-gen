@@ -10,7 +10,7 @@ Summarize this prompt {prompt} text so that it captures the subject and style de
 summarize the negative prompt {negative_prompt} so that it is under 80 characters while keeping the intent
 
 Then call the render tool with the prompt and negative prompts. If the number_of_images {number_of_images} wasn't set explicitly send a 1 otherwise
-pass the value with a ceiling of 4
+pass the value along.
 
 return json like:
 {
