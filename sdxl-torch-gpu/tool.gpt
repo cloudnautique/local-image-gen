@@ -10,13 +10,9 @@ Summarize this prompt {prompt} text so that it captures the subject and style de
 summarize the negative prompt {negative_prompt} so that it is under 80 characters while keeping the intent
 
 Then call the render tool with the prompt and negative prompts. If the number_of_images {number_of_images} wasn't set explicitly send a 1 otherwise
-pass the value along.
+pass the value along to the render tool.
 
-return json like:
-{
-    "image_name": "file:"
-}
-
+Return the json output as is to the caller.
 ---
 name: render
 tools: sys.exec
